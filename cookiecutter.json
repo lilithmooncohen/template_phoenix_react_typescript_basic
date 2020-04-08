@@ -1,0 +1,5 @@
+{
+    "app_name": "my_app",
+    "project_slug": "{{ cookiecutter.app_name|replace('_', '-') }}",
+    "module_name": "MyApp"
+}

@@ -1,0 +1,22 @@
+version: '2.2'
+services:
+
+  postgres:
+    image: postgres:12.2
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
+      - "POSTGRES_DB={{ cookiecutter.app_name }}"
+    cpus: 1
+    mem_limit: 1024M
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: ./
+    environment:
+      - "SECRET_KEY_BASE=wNDtXNxUkXflzc33ge+eHkYGkuuxORqLyb+H/KIO/DhmHGT9CyxrtuKeP1SQSMsR"
+      - "DATABASE_URL=ecto://postgres:postgres@postgres/{{ cookiecutter.app_name }}"
+    ports:
+      - "4000:4000"
